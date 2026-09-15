@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL Tier-I Dynamic Mock Test Series</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        },
+                        darkbg: '#0b0f19',
+                        darkcard: '#111827',
+                        darkborder: '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    </style>
+</head>
+<body class="bg-darkbg text-gray-100 min-h-screen font-sans flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-darkborder bg-darkcard/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-600 text-white p-2 rounded-lg font-bold text-xl shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide text-white">SSC CGL PrepZone</h1>
+                    <p class="text-xs text-gray-400">Dynamic PYQ Mock Practice</p>
+                </div>
+            </div>
+
+            <!-- Active Sectional Timer Display -->
+            <div id="active-timer-container" class="hidden flex items-center space-x-3 bg-red-950/40 border border-red-500/30 px-4 py-1.5 rounded-full">
+                <i class="fa-regular fa-clock text-red-400 animate-pulse"></i>
+                <span class="text-xs uppercase tracking-wider text-red-300 font-semibold">Time Left:</span>
+                <span id="timer-display" class="font-mono text-lg font-bold text-red-400">20:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- STEP 1: Subject Selection -->
+        <section id="dashboard-view" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">SSC CGL Dynamic PYQ Mocks</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Full 25-question section tests structured from Easy to Advanced difficulty levels.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Reasoning -->
+                <div class="bg-darkcard border border-darkborder hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">General Intelligence</h3>
+                        <p class="text-gray-400 text-xs mb-4">Reasoning & Mental Ability</p>
+                        <div class="space-y-2 text-xs text-gray-400 border-t border-darkborder pt-3">
+                            <div class="flex justify-between"><span>Questions:</span><span class="text-gray-200 font-medium">25 PYQs</span></div>
+                            <div class="flex justify-between"><span>Time Limit:</span><span class="text-gray-200 font-medium">20 Mins</span></div>
+                            <div class="flex justify-between"><span>Marks:</span><span class="text-gray-200 font-medium">50 Marks</span></div>
+                        </div>
+                    </div>
+                    <button onclick="startTest('reasoning')" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-brand-600/20 active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-play text-xs"></i>
+                        <span>Start Section Test</span>
+                    </button>
+                </div>
+
+                <!-- Quant -->
+                <div class="bg-darkcard border border-darkborder hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Quantitative Aptitude</h3>
+                        <p class="text-gray-400 text-xs mb-4">Arithmetic & Advance Maths</p>
+                        <div class="space-y-2 text-xs text-gray-400 border-t border-darkborder pt-3">
+                            <div class="flex justify-between"><span>Questions:</span><span class="text-gray-200 font-medium">25 PYQs</span></div>
+                            <div class="flex justify-between"><span>Time Limit:</span><span class="text-gray-200 font-medium">25 Mins</span></div>
+                            <div class="flex justify-between"><span>Marks:</span><span class="text-gray-200 font-medium">50 Marks</span></div>
+                        </div>
+                    </div>
+                    <button onclick="startTest('quant')" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-brand-600/20 active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-play text-xs"></i>
+                        <span>Start Section Test</span>
+                    </button>
+                </div>
+
+                <!-- English -->
+                <div class="bg-darkcard border border-darkborder hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">English Comprehension</h3>
+                        <p class="text-gray-400 text-xs mb-4">Grammar & Vocab PYQs</p>
+                        <div class="space-y-2 text-xs text-gray-400 border-t border-darkborder pt-3">
+                            <div class="flex justify-between"><span>Questions:</span><span class="text-gray-200 font-medium">25 PYQs</span></div>
+                            <div class="flex justify-between"><span>Time Limit:</span><span class="text-gray-200 font-medium">15 Mins</span></div>
+                            <div class="flex justify-between"><span>Marks:</span><span class="text-gray-200 font-medium">50 Marks</span></div>
+                        </div>
+                    </div>
+                    <button onclick="startTest('english')" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-brand-600/20 active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-play text-xs"></i>
+                        <span>Start Section Test</span>
+                    </button>
+                </div>
+
+                <!-- General Awareness -->
+                <div class="bg-darkcard border border-darkborder hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-rose-500/10 text-rose-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">General Awareness</h3>
+                        <p class="text-gray-400 text-xs mb-4">Polity, History & Science</p>
+                        <div class="space-y-2 text-xs text-gray-400 border-t border-darkborder pt-3">
+                            <div class="flex justify-between"><span>Questions:</span><span class="text-gray-200 font-medium">25 PYQs</span></div>
+                            <div class="flex justify-between"><span>Time Limit:</span><span class="text-gray-200 font-medium">10 Mins</span></div>
+                            <div class="flex justify-between"><span>Marks:</span><span class="text-gray-200 font-medium">50 Marks</span></div>
+                        </div>
+                    </div>
+                    <button onclick="startTest('ga')" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-2.5 rounded-xl transition shadow-lg shadow-brand-600/20 active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-play text-xs"></i>
+                        <span>Start Section Test</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: Active Test View -->
+        <section id="quiz-view" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-3 space-y-6">
+                <div class="bg-darkcard border border-darkborder rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div class="flex justify-between items-center border-b border-darkborder pb-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-sm font-semibold text-brand-500 uppercase tracking-wider" id="current-section-title">Section</span>
+                            <span id="level-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">Easy</span>
+                        </div>
+                        <span class="text-xs text-gray-400 font-mono" id="question-progress-label">Question 1 of 25</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 id="question-text" class="text-lg sm:text-xl font-medium text-white leading-relaxed">
+                            Loading Question...
+                        </h3>
+                    </div>
+
+                    <div id="options-container" class="space-y-3 pt-2"></div>
+
+                    <div class="flex justify-between items-center pt-6 border-t border-darkborder">
+                        <button onclick="prevQuestion()" id="btn-prev" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm font-medium transition disabled:opacity-40">
+                            <i class="fa-solid fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        
+                        <div class="space-x-3">
+                            <button onclick="clearResponse()" class="px-4 py-2 border border-darkborder hover:bg-gray-800 text-gray-400 rounded-lg text-sm font-medium transition">
+                                Clear Selection
+                            </button>
+                            <button onclick="nextQuestion()" id="btn-next" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-sm font-medium transition">
+                                Save & Next <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Palette -->
+            <div class="space-y-6">
+                <div class="bg-darkcard border border-darkborder rounded-2xl p-6 space-y-4">
+                    <h4 class="text-sm font-bold text-gray-300 uppercase tracking-wider">Question Palette</h4>
+                    
+                    <div id="question-palette" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto pr-1"></div>
+
+                    <div class="pt-4 border-t border-darkborder space-y-2 text-xs text-gray-400">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 bg-emerald-500/20 border border-emerald-500 rounded-full"></span>
+                            <span>Answered</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 bg-gray-800 border border-gray-600 rounded-full"></span>
+                            <span>Not Answered</span>
+                        </div>
+                    </div>
+
+                    <button onclick="submitTest()" class="w-full mt-4 bg-red-600/20 border border-red-500/30 hover:bg-red-600 text-red-300 hover:text-white font-semibold py-3 rounded-xl transition text-sm">
+                        Submit Section Test
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: Results View -->
+        <section id="result-view" class="hidden space-y-8">
+            <div class="bg-darkcard border border-darkborder rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-darkborder pb-6">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-white">Performance Overview</h2>
+                        <p class="text-gray-400 text-sm">Detailed analysis and answer key solutions</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button onclick="retestCurrentSubject()" class="bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition shadow-lg shadow-brand-500/20 flex items-center space-x-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Retest Section</span>
+                        </button>
+                        <button onclick="returnToDashboard()" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">
+                            Dashboard
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-darkbg border border-darkborder p-4 rounded-xl text-center">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Total Marks</p>
+                        <p class="text-2xl font-black text-brand-500" id="res-score">0 / 50</p>
+                    </div>
+                    <div class="bg-darkbg border border-darkborder p-4 rounded-xl text-center">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Correct Answers</p>
+                        <p class="text-2xl font-black text-emerald-400" id="res-correct">0</p>
+                    </div>
+                    <div class="bg-darkbg border border-darkborder p-4 rounded-xl text-center">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Incorrect Answers</p>
+                        <p class="text-2xl font-black text-rose-500" id="res-wrong">0</p>
+                    </div>
+                    <div class="bg-darkbg border border-darkborder p-4 rounded-xl text-center">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Accuracy</p>
+                        <p class="text-2xl font-black text-amber-400" id="res-accuracy">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-list-check text-brand-500"></i>
+                    <span>Question Breakdown & Solutions</span>
+                </h3>
+                
+                <div id="solution-container" class="space-y-4"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-darkborder bg-darkcard/50 py-6 mt-12 text-center text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>Established since 2026 Meenakshi Ajikumar</p>
+        </div>
+    </footer>
+
+    <script>
+        const questionPools = {
+            reasoning: {
+                title: "General Intelligence & Reasoning",
+                timeLimit: 20 * 60,
+                questions: [
+                    { level: "Easy", text: "Select the related number: 7 : 343 :: 9 : ?", options: ["529", "729", "625", "1000"], correct: 1, explanation: "Pattern: n : n³. 9³ = 729." },
+                    { level: "Easy", text: "India : New Delhi :: Japan : ?", options: ["Osaka", "Tokyo", "Kyoto", "Beijing"], correct: 1, explanation: "Capital of Japan is Tokyo." },
+                    { level: "Easy", text: "Find the odd one out: 14 - 196, 12 - 144, 13 - 169, 15 - 215", options: ["14 - 196", "12 - 144", "13 - 169", "15 - 215"], correct: 3, explanation: "15 squared is 225, not 215." },
+                    { level: "Easy", text: "BCD, EFG, HIJ, ?", options: ["KLM", "LMN", "JKL", "OPQ"], correct: 0, explanation: "Consecutive groups of 3 alphabets." },
+                    { level: "Easy", text: "'PAPER' -> 'QBQFS'. How is 'GLASS' written?", options: ["HMBTT", "HMATT", "HLBTT", "GMATT"], correct: 0, explanation: "+1 shift on each character." },
+                    { level: "Easy", text: "Arrange logically: 1. Country 2. Village 3. State 4. District", options: ["2, 4, 3, 1", "1, 3, 4, 2", "2, 3, 4, 1", "4, 2, 3, 1"], correct: 0, explanation: "Smallest to largest geographical area." },
+                    { level: "Easy", text: "If '+' means '-', '-' means '×', '×' means '÷', '÷' means '+', evaluate: 15 - 3 + 10 ÷ 5", options: ["40", "35", "50", "45"], correct: 0, explanation: "15 * 3 - 10 + 5 = 45 - 10 + 5 = 40." },
+                    { level: "Easy", text: "Introducing a girl, a man says, 'She is the daughter of the only son of my mother.' Relation?", options: ["Brother", "Father", "Uncle", "Nephew"], correct: 1, explanation: "Only son of mother = Himself. Daughter of himself = His daughter. He is Father." },
+
+                    { level: "Moderate", text: "If 'MONKO' is coded as 57, how is 'RING' coded?", options: ["48", "43", "50", "52"], correct: 0, explanation: "Sum of position values: R(18)+I(9)+N(14)+G(7) = 48." },
+                    { level: "Moderate", text: "In a row of 40 students, A is 13th from left. Position from right?", options: ["27th", "28th", "29th", "30th"], correct: 1, explanation: "(Total - Position) + 1 = (40 - 13) + 1 = 28th." },
+                    { level: "Moderate", text: "Statements: All books are pens. Some pens are pencils. Conclusion: I. Some books are pencils. II. No pencil is a book.", options: ["Only I follows", "Only II follows", "Either I or II follows", "Neither follows"], correct: 2, explanation: "Forms a complementary pair (Some + No) with identical subject/predicate." },
+                    { level: "Moderate", text: "Find the missing term: 2, 6, 12, 20, 30, ?", options: ["40", "42", "44", "48"], correct: 1, explanation: "Differences increase by +2: +4, +6, +8, +10, +12 -> 30 + 12 = 42." },
+                    { level: "Moderate", text: "What angle is formed by clock hands at 3:30?", options: ["75°", "85°", "90°", "105°"], correct: 0, explanation: "Angle = |30H - 5.5M| = |30(3) - 5.5(30)| = |90 - 165| = 75°." },
+                    { level: "Moderate", text: "A man walks 5 km North, turns right and walks 3 km, turns right and walks 5 km. How far from start?", options: ["3 km", "5 km", "8 km", "0 km"], correct: 0, explanation: "Forms a rectangle; distance from starting point is 3 km East." },
+                    { level: "Moderate", text: "Find missing number: 8, 27, 64, 125, ?", options: ["216", "243", "343", "196"], correct: 0, explanation: "Cube sequence: 2³, 3³, 4³, 5³, 6³ = 216." },
+                    { level: "Moderate", text: "Select odd pair: (8, 64), (6, 36), (9, 81), (7, 50)", options: ["(8, 64)", "(6, 36)", "(9, 81)", "(7, 50)"], correct: 3, explanation: "7 squared is 49, not 50." },
+                    { level: "Moderate", text: "If 'A' = 2, 'B' = 4, 'C' = 6, then 'DOG' = ?", options: ["52", "60", "26", "38"], correct: 0, explanation: "D(4*2=8) + O(15*2=30) + G(7*2=14) = 52." },
+
+                    { level: "Advanced", text: "Eight persons A, B, C, D, E, F, G, H sit around a circular table. A is opposite D and 3rd to right of B. E is adjacent to A. Who is opposite F if F is 2nd left of C?", options: ["G", "E", "H", "B"], correct: 1, explanation: "Complex arrangement analysis places E opposite F." },
+                    { level: "Advanced", text: "If '＋' and '×' are interchanged and '6' and '3' interchanged, solve: (6 × 4) ＋ 3 = ?", options: ["15", "21", "18", "25"], correct: 1, explanation: "Becomes (3 + 4) * 3 = 7 * 3 = 21." },
+                    { level: "Advanced", text: "How many triangles in a pentagram star?", options: ["5", "8", "10", "12"], correct: 2, explanation: "Standard 5-pointed star contains 10 triangles total." },
+                    { level: "Advanced", text: "A cube painted red on all faces is cut into 64 small cubes. How many have exactly 2 faces painted?", options: ["8", "16", "24", "32"], correct: 2, explanation: "Formula: 12(n - 2) where n = 4. 12(4 - 2) = 24." },
+                    { level: "Advanced", text: "In code: 'cat and dog' = '7 3 2', 'dog is good' = '2 9 5', 'cat is brown' = '7 9 4'. Code for 'and'?", options: ["3", "7", "2", "9"], correct: 0, explanation: "'cat'=7, 'dog'=2. Thus 'and' must be 3." },
+                    { level: "Advanced", text: "If 1st Jan 2020 was Wednesday, what day was 1st Jan 2021?", options: ["Thursday", "Friday", "Saturday", "Sunday"], correct: 1, explanation: "2020 is a leap year (2 odd days). Wednesday + 2 = Friday." },
+                    { level: "Advanced", text: "Statements: All A are B. No B is C. All C are D. Conclusion: I. No A is C. II. Some D are C.", options: ["Only I follows", "Only II follows", "Both I and II follow", "Neither follows"], correct: 2, explanation: "Since no B is C and all A are B, no A is C. Also All C are D implies Some D are C." },
+                    { level: "Advanced", text: "Input: '42 18 79 35'. Step 1 sorts ascending odd numbers first then evens. Result?", options: ["35 79 18 42", "18 35 42 79", "79 35 42 18", "18 42 35 79"], correct: 0, explanation: "Odds (35, 79) then Evens (18, 42) -> 35 79 18 42." }
+                ]
+            },
+            quant: {
+                title: "Quantitative Aptitude",
+                timeLimit: 25 * 60,
+                questions: [
+                    { level: "Easy", text: "If sin θ = 3/5, find tan θ.", options: ["3/4", "4/3", "4/5", "5/3"], correct: 0, explanation: "Base = √(5² - 3²) = 4. tan θ = 3/4." },
+                    { level: "Easy", text: "HCF of two numbers is 4 and ratio is 3:4. Find LCM.", options: ["12", "24", "36", "48"], correct: 3, explanation: "LCM = 3 * 4 * 4 = 48." },
+                    { level: "Easy", text: "20% of a number is 80. What is 50% of that number?", options: ["150", "200", "250", "300"], correct: 1, explanation: "Number = 400. 50% = 200." },
+                    { level: "Easy", text: "Single equivalent discount for 20% and 10% successive discounts?", options: ["28%", "30%", "25%", "32%"], correct: 0, explanation: "20 + 10 - (20*10)/100 = 28%." },
+                    { level: "Easy", text: "Perimeter of equilateral triangle is 36 cm. Area?", options: ["36√3 cm²", "18√3 cm²", "24√3 cm²", "12√3 cm²"], correct: 0, explanation: "Side=12. Area = (√3/4)*144 = 36√3 cm²." },
+                    { level: "Easy", text: "If x + 1/x = 4, then x² + 1/x² = ?", options: ["14", "16", "18", "12"], correct: 0, explanation: "4² - 2 = 14." },
+                    { level: "Easy", text: "Average of 5 consecutive odd numbers starting from 1?", options: ["3", "5", "7", "9"], correct: 1, explanation: "(1+3+5+7+9)/5 = 5." },
+                    { level: "Easy", text: "Simple interest on ₹1000 at 10% for 2 years?", options: ["₹100", "₹200", "₹300", "₹250"], correct: 1, explanation: "SI = (1000*10*2)/100 = ₹200." },
+
+                    { level: "Moderate", text: "CP of 20 articles equals SP of 15 articles. Profit %?", options: ["25%", "33.33%", "20%", "15%"], correct: 1, explanation: "Profit% = [(20-15)/15]*100 = 33.33%." },
+                    { level: "Moderate", text: "Train speed 72 km/h crosses pole in 9 sec. Length of train?", options: ["150m", "180m", "200m", "220m"], correct: 1, explanation: "Speed = 20 m/s. Length = 20 * 9 = 180m." },
+                    { level: "Moderate", text: "A takes 12 days, B takes 15 days. Together they take?", options: ["6(2/3) days", "7(1/2) days", "6(1/3) days", "8 days"], correct: 0, explanation: "(12*15)/(12+15) = 180/27 = 20/3 = 6 2/3 days." },
+                    { level: "Moderate", text: "CI on ₹10,000 at 10% for 2 years compounded annually?", options: ["₹2000", "₹2100", "₹2200", "₹1210"], correct: 1, explanation: "Effective CI rate = 21%. CI = ₹2100." },
+                    { level: "Moderate", text: "Average age of 30 students is 15. Including teacher makes it 16. Teacher age?", options: ["46 years", "45 years", "40 years", "50 years"], correct: 0, explanation: "16 + (30*1) = 46 years." },
+                    { level: "Moderate", text: "Radius of cylinder doubled and height halved. Volume becomes?", options: ["Same", "Doubled", "Halved", "4 times"], correct: 1, explanation: "V = π(2r)²(h/2) = 2πr²h (Doubled)." },
+                    { level: "Moderate", text: "Find value of (a³ + b³) if a + b = 5 and ab = 6.", options: ["35", "45", "65", "25"], correct: 0, explanation: "(a+b)³ - 3ab(a+b) = 125 - 3(6)(5) = 125 - 90 = 35." },
+                    { level: "Moderate", text: "Speed ratio A:B is 3:4. Time ratio to cover same distance?", options: ["3:4", "4:3", "9:16", "1:1"], correct: 1, explanation: "Time ratio is inverse of speed ratio -> 4:3." },
+                    { level: "Moderate", text: "Two pipes fill tank in 10 and 15 mins. Together they fill in?", options: ["6 mins", "8 mins", "5 mins", "12 mins"], correct: 0, explanation: "(10*15)/(10+15) = 6 mins." },
+
+                    { level: "Advanced", text: "A sum becomes 3 times itself at SI in 10 years. In how many years will it become 7 times?", options: ["20 years", "30 years", "25 years", "35 years"], correct: 1, explanation: "Interest = 2P in 10 yrs -> 1P in 5 yrs. For 7 times, interest = 6P -> 6*5 = 30 yrs." },
+                    { level: "Advanced", text: "If x = 2 + √3, find value of x + 1/x and x⁴ + 1/x⁴.", options: ["4 and 194", "4 and 14", "2 and 194", "4 and 196"], correct: 0, explanation: "1/x = 2 - √3. x + 1/x = 4. x² + 1/x² = 14. x⁴ + 1/x⁴ = 14² - 2 = 194." },
+                    { level: "Advanced", text: "In △ABC, AD is bisector of ∠A. AB = 6, AC = 8, BD = 3. Find CD.", options: ["4", "5", "3.5", "4.5"], correct: 0, explanation: "Angle Bisector Theorem: AB/AC = BD/CD -> 6/8 = 3/CD -> CD = 4." },
+                    { level: "Advanced", text: "A sum of money amounts to ₹4840 in 2 yrs and ₹5324 in 3 yrs at CI. Rate of interest?", options: ["10%", "12%", "8%", "15%"], correct: 0, explanation: "Interest in 3rd year = 5324 - 4840 = 484. Rate = (484/4840)*100 = 10%." },
+                    { level: "Advanced", text: "The shadow of a tower standing on level ground is found to be 40m longer when Sun's altitude is 30° than 60°. Height of tower?", options: ["20√3 m", "40√3 m", "20 m", "30 m"], correct: 0, explanation: "h(cot 30° - cot 60°) = 40 -> h(√3 - 1/√3) = 40 -> h(2/√3) = 40 -> h = 20√3 m." },
+                    { level: "Advanced", text: "A, B, C enter a partnership. A invests 3 times as much as B and B invests 2/3 of C. Ratio of profit?", options: ["6:2:3", "3:2:3", "6:3:2", "2:3:6"], correct: 0, explanation: "Let C = 3, B = 2, A = 6. Ratio = 6:2:3." },
+                    { level: "Advanced", text: "Find remainder when 7¹°³ is divided by 25.", options: ["18", "7", "24", "1"], correct: 0, explanation: "7¹ = 7, 7² = 49 ≡ -1 mod 25. 7¹°³ = (7²)⁵¹ * 7 ≡ (-1)⁵¹ * 7 = -7 ≡ 18 mod 25." },
+                    { level: "Advanced", text: "Three circles of radius 1 cm touch each other externally. Area of region enclosed between them?", options: ["(√3 - π/2) cm²", "(√3 - π) cm²", "(2√3 - π) cm²", "(√3/2 - π) cm²"], correct: 0, explanation: "Area of eq. triangle (side 2) - 3 * (sector 60° of r=1) = √3 - π/2." }
+                ]
+            },
+            english: {
+                title: "English Comprehension",
+                timeLimit: 15 * 60,
+                questions: [
+                    { level: "Easy", text: "Synonym for: 'CANDID'", options: ["Frank", "Secretive", "Shy", "Deceitful"], correct: 0, explanation: "'Candid' means truthful and frank." },
+                    { level: "Easy", text: "Antonym for: 'OBSTINATE'", options: ["Stubborn", "Flexible", "Rigid", "Firm"], correct: 1, explanation: "'Obstinate' means stubborn; opposite is flexible." },
+                    { level: "Easy", text: "Correctly spelt word:", options: ["Acommodate", "Accommodate", "Acomodate", "Accomodate"], correct: 1, explanation: "Correct spelling: Accommodate." },
+                    { level: "Easy", text: "Idiom: 'Bite the bullet'", options: ["Avoid situation", "Face difficult situation courageously", "Eat fast", "Get shot"], correct: 1, explanation: "Face a difficult situation with courage." },
+                    { level: "Easy", text: "One-word substitution: 'Person who looks at bright side'", options: ["Pessimist", "Optimist", "Pacifist", "Atheist"], correct: 1, explanation: "Optimist." },
+                    { level: "Easy", text: "Antonym for: 'TRANSPARENT'", options: ["Clear", "Opaque", "Lucid", "Translucent"], correct: 1, explanation: "Opaque does not let light pass." },
+                    { level: "Easy", text: "Synonym for: 'DILIGENT'", options: ["Lazy", "Hardworking", "Careless", "Indifferent"], correct: 1, explanation: "Diligent means hardworking." },
+                    { level: "Easy", text: "Idiom: 'Once in a blue moon'", options: ["Frequently", "Very rarely", "Monthly", "Never"], correct: 1, explanation: "Happens very rarely." },
+
+                    { level: "Moderate", text: "Spot Error: 'He is superior than me in service.'", options: ["He is", "superior than", "me in", "service."], correct: 1, explanation: "Adjectives like superior take 'to' instead of 'than'." },
+                    { level: "Moderate", text: "Active/Passive: 'She writes a letter.'", options: ["A letter was written", "A letter is written by her", "A letter is being written", "A letter has been written"], correct: 1, explanation: "Simple present passive: is + V3." },
+                    { level: "Moderate", text: "Direct/Indirect: He said, 'I am busy today.'", options: ["He said he was busy today", "He said that he was busy that day", "He says he is busy", "He told he was busy"], correct: 1, explanation: "'today' changes to 'that day', present to past." },
+                    { level: "Moderate", text: "Fill in blank: Neither of the two boys _____ present.", options: ["were", "was", "have been", "are"], correct: 1, explanation: "'Neither of' takes a singular verb ('was')." },
+                    { level: "Moderate", text: "One-word: 'A study of ancient things'", options: ["Archaeology", "Anthropology", "Biology", "Ethnology"], correct: 0, explanation: "Archaeology." },
+                    { level: "Moderate", text: "Antonym for: 'METICULOUS'", options: ["Careful", "Careless", "Exact", "Painstaking"], correct: 1, explanation: "Meticulous means highly attentive to detail; opposite is careless." },
+                    { level: "Moderate", text: "Synonym for: 'PRUDENT'", options: ["Wise", "Foolish", "Rash", "Careless"], correct: 0, explanation: "Prudent means wise/cautious." },
+                    { level: "Moderate", text: "Idiom: 'Spill the beans'", options: ["Work hard", "Reveal a secret", "Make a mess", "Delay a task"], correct: 1, explanation: "Reveal secret information." },
+                    { level: "Moderate", text: "Spot Error: 'Each of the girls have performed well.'", options: ["Each of", "the girls", "have performed", "well."], correct: 2, explanation: "'Each of' takes a singular verb -> 'has performed'." },
+
+                    { level: "Advanced", text: "Improvement: 'Had I known about the event, I would attend it.'", options: ["would have attended", "will attend", "had attended", "No improvement"], correct: 0, explanation: "Third conditional: Had + V3 ... would have + V3." },
+                    { level: "Advanced", text: "One-word: 'One who believes in giving equal rights to women'", options: ["Misogynist", "Feminist", "Philanthropist", "Egoist"], correct: 1, explanation: "Feminist." },
+                    { level: "Advanced", text: "Rearrange PQR: P: in the world / Q: corruption is / R: the biggest threat", options: ["QRP", "PQR", "RQP", "PRQ"], correct: 0, explanation: "'Corruption is (Q) the biggest threat (R) in the world (P)' -> QRP." },
+                    { level: "Advanced", text: "Synonym for: 'EPHEMERAL'", options: ["Eternal", "Transient", "Permanent", "Long-lasting"], correct: 1, explanation: "Ephemeral means lasting a short time; transient." },
+                    { level: "Advanced", text: "Antonym for: 'GREGARIOUS'", options: ["Sociable", "Reclusive", "Friendly", "Outgoing"], correct: 1, explanation: "Gregarious means fond of company; opposite is reclusive." },
+                    { level: "Advanced", text: "Idiom: 'To burn the candle at both ends'", options: ["Waste money", "Work extremely hard/exhaust oneself", "Light a house", "Be foolish"], correct: 1, explanation: "Exhaust oneself by overworking late and early." },
+                    { level: "Advanced", text: "Spot Error: 'Hardly had he arrived than the train left.'", options: ["Hardly had", "he arrived", "than the train", "left."], correct: 2, explanation: "'Hardly... when' pair. Replace 'than' with 'when'." },
+                    { level: "Advanced", text: "Fill in blank: The accused was acquitted _____ all charges.", options: ["from", "of", "off", "with"], correct: 1, explanation: "Appropriate preposition: 'acquitted of'." }
+                ]
+            },
+            ga: {
+                title: "General Awareness",
+                timeLimit: 10 * 60,
+                questions: [
+                    { level: "Easy", text: "Rights under Indian Constitution that cannot be suspended during Emergency?", options: ["Article 19", "Article 20 & 21", "Article 14", "Article 32"], correct: 1, explanation: "Articles 20 & 21 cannot be suspended." },
+                    { level: "Easy", text: "Founder of Maurya Empire?", options: ["Ashoka", "Chandragupta Maurya", "Bindusara", "Bimbisara"], correct: 1, explanation: "Chandragupta Maurya." },
+                    { level: "Easy", text: "Organ producing Bile juice?", options: ["Pancreas", "Gallbladder", "Liver", "Stomach"], correct: 2, explanation: "Liver produces bile." },
+                    { level: "Easy", text: "Ex-officio Chairman of Rajya Sabha?", options: ["President", "Prime Minister", "Vice-President", "Speaker"], correct: 2, explanation: "Vice-President of India." },
+                    { level: "Easy", text: "Year of Battle of Plassey?", options: ["1757", "1764", "1857", "1707"], correct: 0, explanation: "23 June 1757." },
+                    { level: "Easy", text: "Known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correct: 1, explanation: "Mars." },
+                    { level: "Easy", text: "SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], correct: 2, explanation: "Ohm (Ω)." },
+                    { level: "Easy", text: "Articles dealing with Right to Equality?", options: ["Articles 14-18", "Articles 19-22", "Articles 23-24", "Articles 25-28"], correct: 0, explanation: "Articles 14-18." },
+
+                    { level: "Moderate", text: "Who wrote 'Harshacharita'?", options: ["Banabhatta", "Kalidasa", "Harsha", "Hiuen Tsang"], correct: 0, explanation: "Banabhatta, court poet of Harsha." },
+                    { level: "Moderate", text: "Longest river in Peninsular India?", options: ["Krishna", "Mahanadi", "Godavari", "Kaveri"], correct: 2, explanation: "Godavari (1465 km)." },
+                    { level: "Moderate", text: "Classical dance form originated in Kerala?", options: ["Bharatanatyam", "Kathakali", "Kathak", "Kuchipudi"], correct: 1, explanation: "Kathakali & Mohiniyattam." },
+                    { level: "Moderate", text: "Gas responsible for global warming?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], correct: 1, explanation: "Carbon Dioxide (CO2)." },
+                    { level: "Moderate", text: "Who introduced Doctrine of Lapse?", options: ["Lord Dalhousie", "Lord Canning", "Lord Curzon", "Lord Wellesley"], correct: 0, explanation: "Lord Dalhousie." },
+                    { level: "Moderate", text: "Chemical name of Vitamin C?", options: ["Retinol", "Ascorbic Acid", "Calciferol", "Thiamine"], correct: 1, explanation: "Ascorbic Acid." },
+                    { level: "Moderate", text: "Which Schedule of Constitution lists official languages?", options: ["7th Schedule", "8th Schedule", "9th Schedule", "10th Schedule"], correct: 1, explanation: "8th Schedule (22 official languages)." },
+                    { level: "Moderate", text: "First governor general of Independent India?", options: ["C. Rajagopalachari", "Lord Mountbatten", "Dr. Rajendra Prasad", "Jawaharlal Nehru"], correct: 1, explanation: "Lord Mountbatten (First Indian was C. Rajagopalachari)." },
+                    { level: "Moderate", text: "Fundamental Duties incorporated by which Amendment?", options: ["42nd Amendment", "44th Amendment", "86th Amendment", "73rd Amendment"], correct: 0, explanation: "42nd Constitutional Amendment Act, 1976." },
+
+                    { level: "Advanced", text: "Which site of Indus Valley Civilisation had a dockyard?", options: ["Harappa", "Mohenjo-daro", "Lothal", "Kalibangan"], correct: 2, explanation: "Lothal (Gujarat)." },
+                    { level: "Advanced", text: "Which instrument measures humidity in air?", options: ["Barometer", "Hygrometer", "Hydrometer", "Anemometer"], correct: 1, explanation: "Hygrometer." },
+                    { level: "Advanced", text: "Who presided over the historic 1929 Lahore Session of INC?", options: ["Jawaharlal Nehru", "Motilal Nehru", "Mahatma Gandhi", "Subhash Chandra Bose"], correct: 0, explanation: "Jawaharlal Nehru (Purna Swaraj resolution passed)." },
+                    { level: "Advanced", text: "Maximum strength of Lok Sabha fixed by Constitution?", options: ["545", "550", "552", "530"], correct: 1, explanation: "550 (after removal of 2 Anglo-Indian nominated seats by 104th Amendment)." },
+                    { level: "Advanced", text: "What type of tax is GST in India?", options: ["Direct Tax", "Indirect Tax", "Progressive Tax", "Income Tax"], correct: 1, explanation: "Comprehensive Indirect Tax." },
+                    { level: "Advanced", text: "Boundary line separating India and China?", options: ["Radcliffe Line", "McMahon Line", "Durand Line", "49th Parallel"], correct: 1, explanation: "McMahon Line." },
+                    { level: "Advanced", text: "First country to introduce paper currency?", options: ["Greece", "India", "China", "Rome"], correct: 2, explanation: "China (during Tang/Song Dynasties)." },
+                    { level: "Advanced", text: "Which element has highest electrical conductivity?", options: ["Copper", "Silver", "Gold", "Aluminium"], correct: 1, explanation: "Silver." }
+                ]
+            }
+        };
+
+        let activeSubjectKey = '';
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timerInterval = null;
+        let timeRemaining = 0;
+
+        // Utility to shuffle questions array
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function startTest(subjectKey) {
+            activeSubjectKey = subjectKey;
+            
+            // Clone and shuffle questions dynamically so each test is fresh
+            currentQuestions = shuffleArray(questionPools[subjectKey].questions);
+            timeRemaining = questionPools[subjectKey].timeLimit;
+            currentIndex = 0;
+            userAnswers = {};
+
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('result-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            document.getElementById('active-timer-container').classList.remove('hidden');
+            document.getElementById('current-section-title').innerText = questionPools[subjectKey].title;
+
+            startTimer();
+            renderQuestion();
+            renderPalette();
+        }
+
+        function retestCurrentSubject() {
+            if (activeSubjectKey) {
+                startTest(activeSubjectKey);
+            }
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time expired! Submitting test.");
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer-display').innerText = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function renderQuestion() {
+            const q = currentQuestions[currentIndex];
+            document.getElementById('question-progress-label').innerText = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+            document.getElementById('question-text').innerText = `${currentIndex + 1}. ${q.text}`;
+
+            // Difficulty Level Badge Styling
+            const badge = document.getElementById('level-badge');
+            badge.innerText = q.level;
+            if (q.level === 'Easy') {
+                badge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/30 text-emerald-400";
+            } else if (q.level === 'Moderate') {
+                badge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 border border-amber-500/30 text-amber-400";
+            } else {
+                badge.className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/10 border border-rose-500/30 text-rose-400";
+            }
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentIndex] === idx;
+                const optionBtn = document.createElement('button');
+                optionBtn.className = `w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between ${
+                    isSelected 
+                    ? 'border-brand-500 bg-brand-500/10 text-white font-medium' 
+                    : 'border-darkborder hover:border-gray-600 bg-darkbg text-gray-300'
+                }`;
+                optionBtn.onclick = () => selectOption(idx);
+                optionBtn.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="w-7 h-7 rounded-lg border border-darkborder bg-darkcard flex items-center justify-center text-xs font-bold text-gray-400">${String.fromCharCode(65 + idx)}</span>
+                        <span>${opt}</span>
+                    </div>
+                    ${isSelected ? '<i class="fa-solid fa-circle-check text-brand-500"></i>' : ''}
+                `;
+                optionsContainer.appendChild(optionBtn);
+            });
+
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentIndex] = optionIndex;
+            renderQuestion();
+            renderPalette();
+        }
+
+        function clearResponse() {
+            delete userAnswers[currentIndex];
+            renderQuestion();
+            renderPalette();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function renderPalette() {
+            const palette = document.getElementById('question-palette');
+            palette.innerHTML = '';
+
+            currentQuestions.forEach((_, idx) => {
+                const isAnswered = userAnswers.hasOwnProperty(idx);
+                const isCurrent = idx === currentIndex;
+
+                const paletteBtn = document.createElement('button');
+                paletteBtn.onclick = () => { currentIndex = idx; renderQuestion(); };
+                paletteBtn.className = `h-8 w-8 rounded-lg font-bold text-xs transition border ${
+                    isCurrent ? 'ring-2 ring-brand-500 ring-offset-2 ring-offset-darkcard' : ''
+                } ${
+                    isAnswered 
+                    ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400' 
+                    : 'bg-darkbg border-darkborder text-gray-400 hover:border-gray-600'
+                }`;
+                paletteBtn.innerText = idx + 1;
+                palette.appendChild(paletteBtn);
+            });
+        }
+
+        function submitTest() {
+            clearInterval(timerInterval);
+            document.getElementById('active-timer-container').classList.add('hidden');
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('result-view').classList.remove('hidden');
+
+            let correctCount = 0;
+            let wrongCount = 0;
+            const solutionContainer = document.getElementById('solution-container');
+            solutionContainer.innerHTML = '';
+
+            currentQuestions.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.correct;
+                const isUnanswered = userChoice === undefined;
+
+                if (isCorrect) correctCount++;
+                else if (!isUnanswered) wrongCount++;
+
+                const card = document.createElement('div');
+                card.className = `bg-darkcard border rounded-xl p-5 space-y-3 ${
+                    isCorrect ? 'border-emerald-500/30' : (isUnanswered ? 'border-darkborder' : 'border-rose-500/30')
+                }`;
+
+                let statusBadge = isCorrect 
+                    ? `<span class="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-500/20"><i class="fa-solid fa-check mr-1"></i> Correct (+2)</span>`
+                    : (isUnanswered ? `<span class="bg-gray-800 text-gray-400 text-xs font-semibold px-2.5 py-1 rounded-md border border-darkborder">Unanswered (0)</span>`
+                    : `<span class="bg-rose-500/10 text-rose-400 text-xs font-semibold px-2.5 py-1 rounded-md border border-rose-500/20"><i class="fa-solid fa-xmark mr-1"></i> Incorrect (-0.50)</span>`);
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-400 font-mono">Q${idx + 1}</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                                q.level === 'Easy' ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' :
+                                (q.level === 'Moderate' ? 'bg-amber-500/10 border-amber-500/30 text-amber-400' : 'bg-rose-500/10 border-rose-500/30 text-rose-400')
+                            }">${q.level}</span>
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <p class="text-white font-medium text-sm sm:text-base">${idx + 1}. ${q.text}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-2">
+                        <div class="p-3 rounded-lg border ${
+                            userChoice === q.correct ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300' : 
+                            (isUnanswered ? 'bg-darkbg border-darkborder text-gray-500' : 'bg-rose-950/30 border-rose-500/40 text-rose-300')
+                        }">
+                            <span class="block text-gray-400 text-[10px] uppercase font-bold mb-1">Your Selection</span>
+                            ${isUnanswered ? 'Not Attempted' : `${String.fromCharCode(65 + userChoice)}. ${q.options[userChoice]}`}
+                        </div>
+                        <div class="p-3 rounded-lg border bg-emerald-950/30 border-emerald-500/40 text-emerald-300">
+                            <span class="block text-gray-400 text-[10px] uppercase font-bold mb-1">Correct Answer</span>
+                            ${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}
+                        </div>
+                    </div>
+                    <div class="bg-darkbg border border-darkborder p-3 rounded-lg text-xs text-gray-400 space-y-1 mt-2">
+                        <span class="text-brand-500 font-semibold block"><i class="fa-solid fa-circle-info mr-1"></i> Explanation:</span>
+                        <p>${q.explanation}</p>
+                    </div>
+                `;
+                solutionContainer.appendChild(card);
+            });
+
+            const maxScore = currentQuestions.length * 2;
+            const totalScore = (correctCount * 2) - (wrongCount * 0.5);
+            const totalAttempted = correctCount + wrongCount;
+            const accuracy = totalAttempted > 0 ? ((correctCount / totalAttempted) * 100).toFixed(1) : 0;
+
+            document.getElementById('res-score').innerText = `${totalScore} / ${maxScore}`;
+            document.getElementById('res-correct').innerText = correctCount;
+            document.getElementById('res-wrong').innerText = wrongCount;
+            document.getElementById('res-accuracy').innerText = `${accuracy}%`;
+        }
+
+        function returnToDashboard() {
+            document.getElementById('result-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
