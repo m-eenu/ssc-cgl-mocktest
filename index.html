@@ -37,23 +37,26 @@
 <body class="bg-darkbg text-gray-100 min-h-screen font-sans flex flex-col justify-between selection:bg-brand-500 selection:text-white">
 
     <!-- Header Navigation -->
-    <header class="border-b border-darkborder bg-darkcard/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-brand-600 text-white p-2 rounded-lg font-bold text-xl shadow-lg shadow-brand-500/20">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg tracking-wide text-white">SSC CGL PrepZone</h1>
-                    <p class="text-xs text-gray-400">Dynamic PYQ Mock Practice</p>
-                </div>
+    <header class="border-b border-darkborder bg-darkcard/80 backdrop-blur-md sticky top-0 z-50 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- Logo / Title Section -->
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">
+                <i class="fa-solid fa-graduation-cap"></i>
             </div>
-            <nav class="space-x-4 text-sm">
-        <a href="index.html" class="hover:text-brand-500 text-gray-300">Home</a>
-        <a href="about.html" class="hover:text-brand-500 text-gray-300">About Us</a>
-        <a href="privacy-policy.html" class="hover:text-brand-500 text-gray-300">Privacy Policy</a>
-        <a href="contact.html" class="hover:text-brand-500 text-gray-300">Contact Us</a>
-    </nav>
+            <div>
+                <h1 class="font-bold text-base sm:text-lg tracking-wide text-white">SSC CGL PrepZone</h1>
+                <p class="text-xs text-gray-400 hidden sm:block">Dynamic PYQ Mock Practice</p>
+            </div>
+        </div>
+
+        <!-- Navigation Links (Responsive) -->
+        <nav class="flex flex-wrap justify-center gap-3 sm:space-x-4 text-xs sm:text-sm">
+            <a href="index.html" class="hover:text-blue-400 text-gray-300">Home</a>
+            <a href="about.html" class="hover:text-blue-400 text-gray-300">About Us</a>
+            <a href="privacy-policy.html" class="hover:text-blue-400 text-gray-300">Privacy Policy</a>
+            <a href="contact.html" class="hover:text-blue-400 text-gray-300">Contact Us</a>
+        </nav>
 
             <!-- Active Sectional Timer Display -->
             <div id="active-timer-container" class="hidden flex items-center space-x-3 bg-red-950/40 border border-red-500/30 px-4 py-1.5 rounded-full">
